@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>confirm</title>
+</head>
+<body>
+<h1>질문에 대한 답변입니다.</h1>
+재차 삼차 물어보는 것은 점에 대한 불신입니다.
+점의 효력이 떨어지는 것이니 조심하시기 바랍니다.
+<div class="container">
+    <div class="category">
+        질문 분야:
+        {% if category == 'hope' %}
+        소원
+        {% elif category == 'consult' %}
+        상담
+        {% elif category == 'business' %}
+        사업
+        {% elif category == 'trade' %}
+        매매
+        {% elif category == 'contract' %}
+        계약
+        {% elif category == 'law' %}
+        소송
+        {% elif category == 'job' %}
+        취업
+        {% elif category == 'promotion' %}
+        승진/진급
+        {% elif category == 'school' %}
+        입학
+        {% elif category == 'move' %}
+        이사
+        {% elif category == 'travel' %}
+        여행
+        {% elif category == 'love' %}
+        연애/사랑
+        {% elif category == 'marry' %}
+        결혼
+        {% endif %}
+    </div>
+    <br>
+    <div>
+        질문 내용: <br> {{ question }}
+    </div>
+    <div class="explain">
+        <h1>결과</h1>
+        <h2>{{name}} 괘</h2>
+        <br>
+        괘에 대한 설명 : <br>
+        {{ content }}
+    </div>
+    <br>
+    <div class="result">
+        질문에 대한 예언:
+        <br><br>
+            {{ jum }}
+    </div>
+
+</div>
+</body>
+</html>

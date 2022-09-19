@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-md-8 mx-auto text-center">
+    <h1>나의 오늘의 운세</h1>
+    <p>{{today_year}}년 {{today_month}}월 {{today_day}}일(음력:{{lunar}})</p>
+    <p>{{gabja}}({{hanja}})</p>
+    <hr>
+    <p>{{dataset.one_total}}</p>
+</div>
+<br>
+{% endblock %}

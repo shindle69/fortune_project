@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ user }}'s profile</h1>
+<ul>
+    <li>email: {{ user.email }}</li>
+    <li>name: {{ user.last.name }} {{ user.first_name }}</li>
+    <li>별칭: {{ user.customer_id }}</li>
+    <li>태어난 일: {{ user.birth_day }}</li>
+    <li>태어난 시간: {{ user.birth_time }}</li>
+    <li>음력: {{ lunar }}</li>
+    <li>사주(한글): {{ gabja }}</li>
+    <li>사주(한자): {{ hanja }}</li>
+</ul>
+
+</body>
+</html>

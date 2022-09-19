@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-md-8 mx-auto text-center">
+    <h1>오늘의 띠별운세</h1>
+    <p>{{today_year}}년 {{today_month}}월 {{today_day}}일(음력:{{lunar}})</p>
+    <p>{{gabja}}({{hanja}})</p>
+</div>
+<br>
+<div class="col-md-8 mx-auto text-left">
+    <div class="mouse">
+        <p>
+            <img src="{% static '1_mouse.png' %}" width="200">
+        </p>
+        <br>
+        <p>쥐띠의 총운: {{dataset.one_total}}</p>
+        <P>1948년생: {{dataset.one_year_1}}</P>
+        <P>1960년생: {{dataset.one_year_2}}</P>
+        <P>1972년생: {{dataset.one_year_3}}</P>
+        <P>1984년생: {{dataset.one_year_4}}</P>
+        <P>1996년생: {{dataset.one_year_5}}</P>
+    </div>
+    <br>
+    <div class="cow">
+        <p>
+            <img src="{% static '2_cow.png' %}" width="200">
+        </p>
+        <br>
+        <p>소띠의 총운: {{dataset.two_total}}</p>
+        <P>1949년생: {{dataset.two_year_1}}</P>
+        <P>1961년생: {{dataset.two_year_2}}</P>
+        <P>1973년생: {{dataset.two_year_3}}</P>
+        <P>1985년생: {{dataset.two_year_4}}</P>
+        <P>1997년생: {{dataset.two_year_5}}</P>
+    </div>
+    <br>
+    <div class="tiger">
+        <p>
+            <img src="{% static '3_tiger.png' %}" width="200">
+        </p>
+        <br>
+        <p>호랑이띠의 총운: {{dataset.three_total}}</p>
+        <P>1950년생: {{dataset.three_year_1}}</P>
+        <P>1962년생: {{dataset.three_year_2}}</P>
+        <P>1974년생: {{dataset.three_year_3}}</P>
+        <P>1986년생: {{dataset.three_year_4}}</P>
+        <P>1998년생: {{dataset.three_year_5}}</P>
+    </div>
+    <br>
+    <div class="rabbit">
+        <p>
+            <img src="{% static '4_rabbit.png' %}" width="200">
+        </p>
+        <br>
+        <p>토끼띠의 총운: {{dataset.four_total}}</p>
+        <P>1951년생: {{dataset.four_year_1}}</P>
+        <P>1963년생: {{dataset.four_year_2}}</P>
+        <P>1975년생: {{dataset.four_year_3}}</P>
+        <P>1987년생: {{dataset.four_year_4}}</P>
+        <P>1999년생: {{dataset.four_year_5}}</P>
+    </div>
+    <br>
+    <div class="dragon">
+        <p>
+            <img src="{% static '5_dragon.png' %}" width="200">
+        </p>
+        <br>
+        <p>용띠의 총운: {{dataset.five_total}}</p>
+        <P>1952년생: {{dataset.five_year_1}}</P>
+        <P>1964년생: {{dataset.five_year_2}}</P>
+        <P>1976년생: {{dataset.five_year_3}}</P>
+        <P>1988년생: {{dataset.five_year_4}}</P>
+        <P>2000년생: {{dataset.five_year_5}}</P>
+    </div>
+    <br>
+    <div class="snake">
+        <p>
+            <img src="{% static '6_snake.png' %}" width="200">
+        </p>
+        <br>
+        <p>뱀띠의 총운: {{dataset.six_total}}</p>
+        <P>1953년생: {{dataset.six_year_1}}</P>
+        <P>1965년생: {{dataset.six_year_2}}</P>
+        <P>1977년생: {{dataset.six_year_3}}</P>
+        <P>1989년생: {{dataset.six_year_4}}</P>
+        <P>2001년생: {{dataset.six_year_5}}</P>
+    </div>
+    <br>
+    <div class="horse">
+        <p>
+            <img src="{% static '7_horse.png' %}" width="200">
+        </p>
+        <br>
+        <p>말띠의 총운: {{dataset.seven_total}}</p>
+        <P>1954년생: {{dataset.seven_year_1}}</P>
+        <P>1966년생: {{dataset.seven_year_2}}</P>
+        <P>1978년생: {{dataset.seven_year_3}}</P>
+        <P>1990년생: {{dataset.seven_year_4}}</P>
+        <P>2002년생: {{dataset.seven_year_5}}</P>
+    </div>
+    <br>
+    <div class="sheep">
+        <p>
+            <img src="{% static '8_sheep.png' %}" width="200">
+        </p>
+        <br>
+        <p>양띠의 총운: {{dataset.eight_total}}</p>
+        <P>1955년생: {{dataset.eight_year_1}}</P>
+        <P>1967년생: {{dataset.eight_year_2}}</P>
+        <P>1979년생: {{dataset.eight_year_3}}</P>
+        <P>1991년생: {{dataset.eight_year_4}}</P>
+        <P>2003년생: {{dataset.eight_year_5}}</P>
+    </div>
+    <br>
+    <div class="monkey">
+        <p>
+            <img src="{% static '9_monkey.png' %}" width="200">
+        </p>
+        <br>
+        <p>원숭이띠의 총운: {{dataset.nine_total}}</p>
+        <P>1956년생: {{dataset.nine_year_1}}</P>
+        <P>1968년생: {{dataset.nine_year_2}}</P>
+        <P>1980년생: {{dataset.nine_year_3}}</P>
+        <P>1992년생: {{dataset.nine_year_4}}</P>
+        <P>2004년생: {{dataset.nine_year_5}}</P>
+    </div>
+    <br>
+    <div class="chicken">
+        <p>
+            <img src="{% static '10_chicken.png' %}" width="200">
+        </p>
+        <br>
+        <p>닭띠의 총운: {{dataset.ten_total}}</p>
+        <P>1957년생: {{dataset.ten_year_1}}</P>
+        <P>1969년생: {{dataset.ten_year_2}}</P>
+        <P>1981년생: {{dataset.ten_year_3}}</P>
+        <P>1993년생: {{dataset.ten_year_4}}</P>
+        <P>2005년생: {{dataset.ten_year_5}}</P>
+    </div>
+    <br>
+    <div class="dog">
+        <p>
+            <img src="{% static '11_dog.png' %}" width="200">
+        </p>
+        <br>
+        <p>개띠의 총운: {{dataset.eleven_total}}</p>
+        <P>1958년생: {{dataset.eleven_year_1}}</P>
+        <P>1970년생: {{dataset.eleven_year_2}}</P>
+        <P>1982년생: {{dataset.eleven_year_3}}</P>
+        <P>1994년생: {{dataset.eleven_year_4}}</P>
+        <P>2006년생: {{dataset.eleven_year_5}}</P>
+    </div>
+    <br>
+    <div class="pig">
+        <p>
+            <img src="{% static '12_pig.png' %}" width="200">
+        </p>
+        <br>
+        <p>돼지띠의 총운: {{dataset.twelve_total}}</p>
+        <P>1947년생: {{dataset.twelve_year_1}}</P>
+        <P>1959년생: {{dataset.twelve_year_2}}</P>
+        <P>1971년생: {{dataset.twelve_year_3}}</P>
+        <P>1983년생: {{dataset.twelve_year_4}}</P>
+        <P>1995년생: {{dataset.twelve_year_5}}</P>
+    </div>
+</div>
+
+{% endblock content %}}>

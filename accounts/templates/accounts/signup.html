@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+회원가입 페이지
+<hr>
+<br>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>
+        아이디:
+        <br><input name="username" type="text">
+    </p>
+    <P>
+        비밀번호:
+        <br><input name="password" type="password">
+    </P>
+    <p>
+        이름:
+        <br><input name="first_name" type="text">
+    </p>
+    <p>
+        성:
+        <br><input name="last_name" type="text">
+    </p>
+    <p>
+        이메일:
+        <br><input name="email" type="text">
+    </p>
+    <p>
+        애칭
+        <br><input name="customer_id" type="text">
+    </p>
+    <p>
+        생년월일(양력을 입력하세요)
+        <br><input name="birth_day" type="date">
+    </p>
+    <p>
+        태어난 시:
+        <br><input name="birth_time" type="time">
+    </p>
+   <p>
+       <input type="submit" value="회원가입">
+   </p>
+
+    </form>
+</body>
+</html>
