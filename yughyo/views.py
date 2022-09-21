@@ -1,8 +1,11 @@
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+
+from accounts.models import MyUser
 from .forms import QuestionForm
 from .models import Iching, Question
+from accounts.models import MyUser
 
 from django.utils import timezone
 import random
@@ -61,8 +64,9 @@ def iching(request,pk):
     return render(request, "yughyo/list.html", context)
 
 
+@login_required(login_url="../accounts/login")
 def front(request):
-    list = Question.objects.all()
+    list = Question.objects.filter(user=request.user)
     context = {
         'list': list,
     }
@@ -76,6 +80,7 @@ def question(request):
             question = form.save(commit=False)
             question.created_at = timezone.now()
             question.jum = random.randint(1, 64)
+            question.user = request.user
             question.save()
             return redirect('yughyo:detail', pk=question.id)
     else:
@@ -83,15 +88,15 @@ def question(request):
         context = {'form': form}
     return render(request, 'yughyo/input.html', context)
 
+
+@login_required
 def detail(request, pk):
     question = Question.objects.get(pk=pk)
     cat = question.category
-
-    print(cat)
-    print(type(cat))
     jum_id = question.jum
     question_text = question.question_text
     iching = Iching.objects.get(pk=jum_id)
+    user = question.user
 
     if cat == "hope":
         jum = iching.hope
@@ -117,22 +122,33 @@ def detail(request, pk):
         jum = iching.travel
     elif cat == "love":
         jum = iching.love
-    elif cat == 'merry':
-        jum = iching.merry
+    elif cat == 'marry':
+        jum = iching.marry
     else:
         print(f"더 이상 데이터가 없습니다.")
 
     g_name = iching.g_name
     g_content = iching.g_content
 
+    myBirthDay = user.birth_day
+    myBirthTime = user.birth_time
+    createdTime = question.created_at
+
     context = {
         'question': question_text,
         'category': cat,
         'jum': jum,
         'name': g_name,
-        'content': g_content
+        'content': g_content,
+        'user': user,
+        'birth_day': myBirthDay,
+        'birth_time':myBirthTime,
+        'createdTime': createdTime
     }
-    return render(request, 'yughyo/detail.html', context)
+    if request.user != question.user:
+        return redirect("{% url 'today_api:today' %}")
+    else:
+        return render(request, 'yughyo/detail.html', context)
 
 def result(request, pk):
     result = Iching.objects.get(pk=pk)

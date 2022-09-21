@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import MyUser
 from datetime import datetime
 from django.utils.dateformat import DateFormat
@@ -63,6 +64,7 @@ def login_view(request):
         if user is not None:
             print("인증성공")
             login(request, user)
+            return redirect(reverse('today_api:today'))
         else:
             print("인증실패")
     return render(request, "accounts/login_view.html")

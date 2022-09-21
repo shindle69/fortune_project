@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>궁금한 것을 입력 하세요( 질문 입력 )</h1>
-<div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <br>
-        <button type="submit" class="btn btn-primary">알고싶어요</button>
-    </form>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-md-8 mx-auto text-center">
+    <h1>궁금한 것을 물어보세요. 선생님(쌤)에게 </h1>
+    <h2>궁물쌤이 알려줍니다</h2>
+    (질문을 입력 하세요. 되도록이면 자세히 하시기 바랍니다. 결과가 예/아니오를 나오도록 질문을 하시면 더 이해하기 좋습니다. 200자 이내 )
+    <br>
+    <div  class="col-md-8 mx-auto text-left">
+        <p>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <button type="submit" class="btn btn-primary">알고싶어요</button>
+            </form>
+        </p>
+    </div>
 </div>
 
-</body>
-</html>
+
+{% endblock content %}}>

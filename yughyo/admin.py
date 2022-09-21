@@ -18,7 +18,7 @@ class IchingAdmin(ImportExportActionModelAdmin):
     ordering = ['g_id']
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('category', 'question_text', 'jum')
+    list_display = ('category', 'question_text', 'jum', 'user')
 
 admin.site.register(Iching, IchingAdmin)
 admin.site.register(Question, QuestionAdmin)

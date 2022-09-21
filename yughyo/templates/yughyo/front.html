@@ -1,18 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>대문-무엇을 알고 싶으세요</h1>
-
-    <button type="button" class="btn btn-primary"><a href="{% url 'yughyo:question_new' %}">질문하기</a></button>
-<h2>지나간 질문들~~</h2>
-{% for i in list %}
-<p>
-{{ i }}
-</p>
-{% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div  class="col-md-8 mx-auto text-left">
+    <div class="col-md-8 mx-auto text-center">
+        <h1>미래가 궁금하시면 물어보세요</h1>
+        <br>
+        <button type="button" class="btn btn-info"><a href="{% url 'yughyo:question_new' %}">질문하기</a></button>
+    </div>
+    <div>
+        <table>
+            <div class="container-fluid" >
+                <div class="row">
+                    <tr>
+                        <th colspan="2">지난 질문들~~</th>
+                    </tr>
+                    <hr>
+                    <td>질문</td>
+                    <td>날짜</td>
+                    {% for i in list %}
+                        <tbody>
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{i.created_at}}</td>
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                </div>
+            </div>
+        </table>
+    </div>
+</div>
+{% endblock %}

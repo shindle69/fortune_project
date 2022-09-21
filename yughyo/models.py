@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import MyUser
+from django.conf import settings
 
 # Create your models here.
 class Iching(models.Model):
@@ -36,7 +37,7 @@ class Question(models.Model):
         ('contract', '계약'), ('law', '소송'), ('job', '취업'), ('promotion', '승진/진급'),
         ('school', '입학'), ('move', '이사'), ('travel', '여행'), ('love', '연애/사랑'), ('marry', '결혼')
     )
-    #user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES)
     question_text = models.CharField(max_length=200)
     jum = models.IntegerField()
