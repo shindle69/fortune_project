@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>회원가입</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-md-8 mx-auto text-center">
 회원가입 페이지
 <hr>
 <br>
@@ -32,21 +29,21 @@
         <br><input name="email" type="text">
     </p>
     <p>
-        애칭
+        별칭(아이디)
         <br><input name="customer_id" type="text">
     </p>
     <p>
-        생년월일(양력을 입력하세요)
+        생년월일(양력을 입력하세요,연도를 입력해서 사용 바람)
         <br><input name="birth_day" type="date">
     </p>
     <p>
-        태어난 시:
+        태어난 시(예:오전 09:01:04로 입력 바람):
         <br><input name="birth_time" type="time">
     </p>
    <p>
        <input type="submit" value="회원가입">
    </p>
 
-    </form>
-</body>
-</html>
+</form>
+</div>
+{% endblock %}

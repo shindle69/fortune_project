@@ -11,17 +11,21 @@
         <table>
             <div class="container-fluid" >
                 <div class="row">
-                    <tr>
+                    <tr ailgn="right>
                         <th colspan="2">지난 질문들~~</th>
                     </tr>
                     <hr>
+                    <td></td>
                     <td>질문</td>
-                    <td>날짜</td>
+                    <td></td>
+                    <td align="center">날짜</td>
                     {% for i in list %}
                         <tbody>
                             <tr>
-                                <td>{{ i }}</td>
-                                <td>{{i.created_at}}</td>
+                                <td>[{{ i.get_category_display }}] </td>
+                                <td> {{ i }} </td>
+                                <td> -- </td>
+                                <td ailgn="right"> {{i.created_at}}</td>
                             </tr>
                         </tbody>
                     {% endfor %}
