@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="col-md-8 mx-auto text-center">
+    <h1>궁물쌤의 운세 게시판</h1>   
+    
+</div>
+<div class="col-md-8 mx-auto text-left">
+    {% for p in post_list %}
+    <hr/>
+        <h2><a href='{{ p.get_absolute_url }}'>{{  p.title }}</a></h2>
+        <h4> {{p.created_at}}   -글쓴이: [{{p.author}}]</h3>        
+        <p> {{  p.content }} </p>
+    {% endfor %}
+</div>
+<br> 
+
+
+{% endblock content %}}>

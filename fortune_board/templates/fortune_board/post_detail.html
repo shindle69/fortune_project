@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="col-md-8 mx-auto text-left">
+    <h3>{{  post.title }}</h3>
+    <hr/>        
+    <h6> <div align="right"> {{post.created_at}}   -글쓴이: {{post.author}}</div></h6>   
+    <br>
+    <p> {{  post.content }} </p>
+    
+</div>
+<br> 
+
+
+{% endblock content %}}>

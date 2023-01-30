@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'today_api',
     'rest_framework',
     'import_export',
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     'my_today',
     'accounts',
     'yughyo',
+    'fortune_board',
 ]
 
 MIDDLEWARE = [

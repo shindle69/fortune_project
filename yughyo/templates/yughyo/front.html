@@ -1,33 +1,29 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div  class="col-md-8 mx-auto text-left">
+<div  class="col-md-8 mx-auto">
     <div class="col-md-8 mx-auto text-center">
         <h1>미래가 궁금하시면 물어보세요</h1>
         <br>
         <button type="button" class="btn btn-info"><a href="{% url 'yughyo:question_new' %}">질문하기</a></button>
     </div>
-    <div>
-        <table>
-            <div class="container-fluid" >
-                <div class="row">
-                    <tr>
-                        <th colspan="2">지난 질문들~~</th>
-                    </tr>
-                    <hr>
-                    <td>질문</td>
-                    <td>날짜</td>
-                    {% for i in list %}
-                        <tbody>
-                            <tr>
-                                <td>{{ i }}</td>
-                                <td>{{i.created_at}}</td>
-                            </tr>
-                        </tbody>
-                    {% endfor %}
-                </div>
+    <div  class="col-md-8 mx-auto text-center">
+        예전에 물어 보았던 것들..
+    </div>
+    <div  class="col-md-8 mx-auto text-left">   
+                      
+            <div>
+                {% for i in list %}   
+                    <div>
+                        <span align="left">
+                            <a class="col-md-8 mx-auto text-left">{{ i }}</a>
+                        </span>  
+                        <span align="right">
+                            {{i.created_at}}
+                        </span>                      
+                    </div> 
+                {% endfor %}
             </div>
-        </table>
     </div>
 </div>
 {% endblock %}
