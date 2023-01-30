@@ -11,7 +11,7 @@ class QuestionForm(forms.ModelForm):
             'question_text': Textarea(attrs={
                 'class': "form-control",
                 'style': 'max-width: 1200px;',
-                'placeholder': 'content'
+                'placeholder': '궁금한 것을 입력하세요.'
             })
         }
 

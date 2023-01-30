@@ -1,10 +1,9 @@
-from django.conf import settings
 from django.urls import path
-from accounts import views
+from . import views
 
 app_name = "about"
 
 urlpatterns = [    
-    path('profile/<int:pk>/', views.profile, name='profile'),
+    path('about/', views.about, name='about'),
     # path('profile', views.profile, name='profile'),
 ]

@@ -7,6 +7,11 @@
     <hr/>        
     <h6> <div align="right"> {{post.created_at}}   -글쓴이: {{post.author}}</div></h6>   
     <br>
+    <div class="card mb-4">
+        
+        <img class="card-img-top" src="{{ post.post_image.url }}"  alt="Card image cap">
+        
+    </div>
     <p> {{  post.content }} </p>
     
 </div>

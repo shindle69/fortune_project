@@ -7,6 +7,7 @@
         <br>
         <button type="button" class="btn btn-info"><a href="{% url 'yughyo:question_new' %}">질문하기</a></button>
     </div>
+<<<<<<< HEAD
     <div  class="col-md-8 mx-auto text-center">
         예전에 물어 보았던 것들..
     </div>
@@ -23,6 +24,31 @@
                         </span>                      
                     </div> 
                 {% endfor %}
+=======
+    <div>
+        <table>
+            <div class="container-fluid" >
+                <div class="row">
+                    <tr ailgn="right>
+                        <th colspan="2">지난 질문들~~</th>
+                    </tr>
+                    <hr>
+                    <td></td>
+                    <td>질문</td>
+                    <td></td>
+                    <td align="center">날짜</td>
+                    {% for i in list %}
+                        <tbody>
+                            <tr>
+                                <td>[{{ i.get_category_display }}] </td>
+                                <td> {{ i }} </td>
+                                <td> -- </td>
+                                <td ailgn="right"> {{i.created_at}}</td>
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                </div>
+>>>>>>> 197762b40b4dfd7075c39ba66922ac42fd5cb65a
             </div>
     </div>
 </div>

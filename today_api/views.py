@@ -53,3 +53,6 @@ def today_catch(request):
         "hanja": hanja,
     }
     return render(request, "today_api/today.html", context)
+
+def about(request):
+    return render(request, "about.html")
