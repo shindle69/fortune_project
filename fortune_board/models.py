@@ -11,6 +11,7 @@ class Post(models.Model):
     publish_confirm = models.BooleanField(default=False)
     
     post_image = models.ImageField(upload_to='fortune_board/images/%Y/%m/%d/', blank=True)
+    file_upload = models.FileField(upload_to='fortune_board/files/%Y/%m/%d/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
