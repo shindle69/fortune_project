@@ -8,13 +8,16 @@
 <div class="col-md-8 mx-auto text-left">
     {% for p in post_list %}
     <hr/>
-        <h2><a href='{{ p.get_absolute_url }}'>{{  p.title }}</a></h2>
-        <h4> {{p.created_at}}   -글쓴이: [{{p.author}}]</h3>  
-        <div class="card mb-4">            
-            {% comment %} <img class="card-img-top" src="{{ p.post_image.url }}"  alt="Card image cap">             {% endcomment %}
+        <h2><div align="center"><a href='{{ p.get_absolute_url }}'>{{  p.title }}</a></div></h2>
+        <div align="right"> {{p.created_at}}   -글쓴이: {{p.author}}</div>        
+        <div class="card mb-4">   
+            {% if p.post_image %}         
+                <img class="card-img-top" src="{{ p.post_image.url }}"  alt="{{ p }} post image">   
+            {% endif %}         
         </div>
         <p> {{  p.content }} </p>
     {% endfor %}
+    <br>
 </div>
 <br> 
 
