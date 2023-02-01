@@ -10,9 +10,10 @@
         <h6> <div align="right"> {{post.created_at}}   -글쓴이: {{post.author}}</div></h6>   
         <br>
         <div class="card mb-4">
-            {% if post_image.exists %}
-                <img class="card-img-top" src="{{ post.post_image.url }}"  alt="Card image cap">
+            {% if post.post_image %}
+                <img class="figure-img img-fluid rounded mx-auto" src="{{ post.post_image.url }}"   width="400" alt="{{post.title}} post_image">
             {% endif %}
+
         </div>
         <p> {{  post.content }} </p>    
         
@@ -20,7 +21,6 @@
     <br> 
 </div>
 <div id ="comment-area">
-    <hr/>
     <div class="col-md-8 mx-auto text-left">
         <p>comment area</p>
     </div>

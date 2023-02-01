@@ -1,29 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+
 <div class="col-md-8 mx-auto text-center">
     <h1>궁물쌤의 운세 게시판</h1>   
-    
+    <hr/>
 </div>
-<div id="main_area" class="col-md-8 mx-auto text-left">
-    {% if post_list.exists %}
-        {% for p in post_list %}
-        <hr/>
-            <h2><div align="center"><a href='{{ p.get_absolute_url }}'>{{  p.title }}</a></div></h2>
-            <div align="right"> {{p.created_at}}   -글쓴이: {{p.author}}</div>        
-            <div class="card mb-4">   
-                {% if p.post_image %}         
-                    <img class="card-img-top" src="{{ p.post_image.url }}"  alt="{{ p }} post image" >   
-                {% endif %}         
-            </div>
-            <p> {{  p.content | truncatewords:50 }} </p>
-        {% endfor %}
-    {% else %}
-                <h3>아직 게시물이 없습니다.</h3>
-    {% endif %}
-    <br>
-</div>
-<br> 
+<div class="col-md-12 mx-auto text-center">
+    <div class="row">    
+        <div id="main_area" class="col-md-8 mx-auto">
+            {% if post_list.exists %}
+                {% for p in post_list %} 
 
+                    {% if p.category %}     
+                        <span class="badge badge-secondary float-right">{{ p.category }}</span>   
+                    {% else %}
+                        <span class="badge badge-secondary float-right">미분류</span> 
+                    {% endif %}       
+
+                    <h2><div align="center"><a href='{{ p.get_absolute_url }}'>{{  p.title }}</a></div></h2>
+                    <div align="right"> {{p.created_at}}   -글쓴이: {{p.author}}</div>    
+                    <div class="card mb-4">   
+                        {% if p.post_image %}         
+                            <img class="figure-img img-fluid rounded mx-auto" src="{{ p.post_image.url }}"  alt="{{ p }} post image" >   
+                        {% endif %}         
+                    </div>
+                    <p> {{  p.content | truncatewords:50 }} </p>
+                {% endfor %}
+            {% else %}
+                        <h3>아직 게시물이 없습니다.</h3>
+            {% endif %}
+            <br>
+        </div>
+        <div class="col-md-3 mx-auto" id="category-card">
+            <h5 class="card-header">카테고리</h5>
+            <div class="card-body">
+                <div class="row">
+                    <ul align="left">
+                        {% for category in categories %}
+                            <li>
+                                <a href="{{ category.get_absolute_url }}"> {{category}} ({{ category.post_set.count }}) </a>  
+                            </li>                   
+                        {% endfor %}
+                            <li><a href="/fortune_board/category/no_category/"> 미분류 {{ no_category_post_count }}</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}}>
