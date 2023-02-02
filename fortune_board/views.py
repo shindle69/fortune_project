@@ -20,9 +20,16 @@ class PostList(ListView):
     # context_object_name = ''
     # template_name='fortune_board/index.html'
 
-class PostDetailView(DetailView):
+class PostDetail(DetailView):
     model = Post
     template_name = "fortune_board/post_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetail, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_post_count'] = Post.objects.filter(category=None).count()
+
+        return context
 
     
 

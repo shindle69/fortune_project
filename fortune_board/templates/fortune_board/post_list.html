@@ -10,15 +10,21 @@
     <div class="row">    
         <div id="main_area" class="col-md-8 mx-auto">
             {% if post_list.exists %}
-                {% for p in post_list %} 
-
-                    {% if p.category %}     
-                        <span class="badge badge-secondary float-right">{{ p.category }}</span>   
-                    {% else %}
-                        <span class="badge badge-secondary float-right">미분류</span> 
-                    {% endif %}       
-
-                    <h2><div align="center"><a href='{{ p.get_absolute_url }}'>{{  p.title }}</a></div></h2>
+                {% for p in post_list %}       
+                    <div>
+                        <h2>
+                            <div align="center"><a href='{{ p.get_absolute_url }}'>
+                                {{  p.title }}</a>
+                                
+                                {% if p.category %}     
+                                    <span class="badge bg-secondary float-end">{{ p.category }}</span>   
+                                {% else %}
+                                    <span class="badge bg-secondary float-end">미분류</span> 
+                                {% endif %}  
+                            </div>
+                        </h2>
+ 
+                    </div>    
                     <div align="right"> {{p.created_at}}   -글쓴이: {{p.author}}</div>    
                     <div class="card mb-4">   
                         {% if p.post_image %}         
@@ -33,7 +39,8 @@
             <br>
         </div>
         <div class="col-md-3 mx-auto" id="category-card">
-            <h5 class="card-header">카테고리</h5>
+            {% comment %} <h5 class="card-header">카테고리</h5> {% endcomment %}
+            <h5 align="left">Category</h5>
             <div class="card-body">
                 <div class="row">
                     <ul align="left">
