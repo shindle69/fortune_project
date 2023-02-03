@@ -1,8 +1,8 @@
-asgiref==3.5.2
+asgiref==3.4.1
 backports.zoneinfo==0.2.1
 defusedxml==0.7.1
 diff-match-patch==20200713
-Django==4.1.1
+Django==3.2
 django-import-export==2.8.0
 djangorestframework==3.13.1
 et-xmlfile==1.1.0

@@ -9,6 +9,6 @@ db.sqlite3
 db.sqlite3-journal
 _media
 venv/
-./ideas
+./idea
 migrations/
 static
