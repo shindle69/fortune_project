@@ -21,18 +21,35 @@
                                     <span class="badge bg-secondary float-end">{{ p.category }}</span>   
                                 {% else %}
                                     <span class="badge bg-secondary float-end">미분류</span> 
-                                {% endif %}  
+                                {% endif %} 
+                                
                             </div>
                         </h2>
  
                     </div>    
-                    <div align="right"> {{p.created_at}}   -글쓴이: {{p.author}}</div>    
+                        
                     <div class="card mb-4">   
                         {% if p.post_image %}         
                             <img class="figure-img img-fluid rounded mx-auto" src="{{ p.post_image.url }}"  alt="{{ p }} post image" >   
                         {% endif %}         
                     </div>
                     <p> {{  p.content | truncatewords:50 }} </p>
+
+                    {% if p.tag %}
+                        <i class="fa-solid fa-tag"></i>
+                        {% for t in p.tag.iterator %}
+                            <a href="{{ t.get_absolute_url }}"><span class="badge bg-secondary">{{ t }}</span></a>
+                        {% endfor %}
+                        <br/>
+                        <br/>
+                    {% endif %}
+                    
+                    <div align="right" class="card-footer">
+                        Post on {{p.created_at}} by <a href="#">{{p.author}}</a>
+                    </div>
+                    <br/>
+                    <br/>
+
                 {% endfor %}
             {% else %}
                         <h3>아직 게시물이 없습니다.</h3>

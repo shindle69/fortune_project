@@ -23,6 +23,15 @@
 
         </div>
         <p> {{  post.content }} </p>    
+
+        {% if post.tag %}
+            <i class="fa-solid fa-tag"></i>
+            {% for t in post.tag.iterator %}
+                <a href="{{ t.get_absolute_url }}"><span class="badge bg-secondary">{{ t }}</span></a>
+            {% endfor %}
+            <br/>
+            <br/>
+        {% endif %}
         
     </div>
     <br> 
