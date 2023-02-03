@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Post, Category, Tag
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
+from django.utils.text import slugify
 
 # Create your views here.
 def tag_page(request, slug):
@@ -78,14 +79,31 @@ class PostCreate(LoginRequiredMixin,CreateView):
         current_user = self.request.user
         if current_user.is_authenticated:
             form.instance.author = current_user
-            return super(PostCreate, self).form_valid(form)
+            response = super(PostCreate, self).form_valid(form)
+
+            tags_str = self.request.POST.get('tags_str')
+            if tags_str:
+                tags_str = tags_str.strip()
+
+                tags_str = tags_str.replace(',',';')
+                tags_list = tags_str.split(';')
+
+                for t in tags_list:
+                    t = t.strip()
+                    tagging, is_tag_created = Tag.objects.get_or_create(name=t)
+                    if is_tag_created:
+                        tagging.slug = slugify(t, allow_unicode=True)
+                        tagging.save()
+                    self.object.tag.add(tagging)
+
+            return response
         else:
             return redirect('fortune_board/')
 
 class PostUpdate(LoginRequiredMixin,UpdateView):
     model = Post
     fields = [
-        'title', 'content', 'post_image', 'category','publish_confirm', 
+        'title', 'content', 'post_image', 'category','publish_confirm', 'tag'
     ]
 
     template_name = "fortune_board/post_update_form.html"

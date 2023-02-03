@@ -2,19 +2,21 @@
 {% load static %}
 {% block content %}
 
-
+<h1 align="center">Create New Post</h1>
+<hr/>
 <div id ="post-area">
     <div class="col-md-8 mx-auto">
-        <h1>Create New Post</h1>
-        <hr/>
+        
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <table>
                 {{ form }}
-            </table>
-            <div align="center">
-                <button type="submit" class="btn btn-primary float-right">Submit</button>
-            </div>
+                <tr>
+                    <th><label for="id_tags_str" >Tags:</label></th>
+                    <td><input type="text" name="tags_str" id="id_tags_str"></td>
+                </tr>
+            </table>            
+            <button type="submit" class="btn btn-primary float-end">Submit</button>
         </form>
     </div>
 </div>
