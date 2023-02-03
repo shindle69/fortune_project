@@ -3,12 +3,23 @@
 {% block content %}
 
 <div class="col-md-8 mx-auto text-center">
+    <div>
+        {% if user.is_authenticated %}
+            {% if user.is_superuser or user.is_staff %}
+                <a class="btn btn-info btn-sm float-end" href="/fortune_board/create_post/" role="button">
+                    <i class="fas fa-pen"></i>&nbsp;&nbsp;새로운 글 작성
+                </a>
+            {% endif %}
+        {% endif %}
+    </div>  
     <h1>궁물쌤의 운세 게시판{% if category %}<span class="badge bg-secondary float-end">{{category}}</span>{% endif %}</h1>   
     <hr/>
 </div>
 <div class="col-md-12 mx-auto text-center">
+    
     <div class="row">    
-        <div id="main_area" class="col-md-8 mx-auto">            
+        
+        <div id="main_area" class="col-md-8 mx-auto">  
 
             {% if post_list.exists %}
                 {% for p in post_list %}       
@@ -43,14 +54,13 @@
                     <p> {{  p.content | truncatewords:50 }} </p>
 
                     {% if p.tag %}
-                        <i class="fa-solid fa-tag"></i>
+                        <i class="fas fa-tag"></i>
                         {% for t in p.tag.iterator %}
                             <a href="{{ t.get_absolute_url }}"><span class="badge bg-secondary">{{ t }}</span></a>
                         {% endfor %}
                         <br/>
                         <br/>
-                    {% endif %}
-                    
+                    {% endif %}                    
                     
                     <br/>
                     <br/>
