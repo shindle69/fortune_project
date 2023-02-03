@@ -1,8 +1,8 @@
-from django.views.generic import ListView,DetailView, CreateView
+from django.views.generic import ListView,DetailView, CreateView, UpdateView
 from django.shortcuts import render, redirect
 from .models import Post, Category, Tag
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 def tag_page(request, slug):
@@ -81,6 +81,20 @@ class PostCreate(LoginRequiredMixin,CreateView):
             return super(PostCreate, self).form_valid(form)
         else:
             return redirect('fortune_board/')
+
+class PostUpdate(LoginRequiredMixin,UpdateView):
+    model = Post
+    fields = [
+        'title', 'content', 'post_image', 'category','publish_confirm', 
+    ]
+
+    template_name = "fortune_board/post_update_form.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super(PostUpdate, self).dispatch(request,  *args, **kwargs)
+        else:
+            raise PermissionDenied
 
 
 

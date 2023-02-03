@@ -13,8 +13,15 @@
             <span class="badge bg-secondary float-end">분류: 미분류</span>
         {% endif %}
 
-        <hr/>        
-        <h6> <div align="right"> {{post.created_at}}   -글쓴이: {{post.author}}</div></h6>   
+        <hr/>     
+        <div>
+            {% if user.is_authenticated and user == post.author %}
+                <a class="btn btn-info btn-sm float-end" href="/fortune_board/update_post/{{post.pk}}/" role="button"><i class="fas fa-pen"></i>포스트 수정하기</a>
+            {% endif %}
+        </div>
+        <h5>
+            <div align="left"> {{post.created_at}}   -글쓴이: {{post.author}}</div>
+        </h5>   
         <br>
         <div class="card mb-4">
             {% if post.post_image %}
@@ -25,7 +32,7 @@
         <p> {{  post.content }} </p>    
 
         {% if post.tag %}
-            <i class="fa-solid fa-tag"></i>
+            <i class="fas fa-tag"></i>
             {% for t in post.tag.iterator %}
                 <a href="{{ t.get_absolute_url }}"><span class="badge bg-secondary">{{ t }}</span></a>
             {% endfor %}
