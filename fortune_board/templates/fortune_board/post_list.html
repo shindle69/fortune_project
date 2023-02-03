@@ -15,8 +15,8 @@
                     <div>
                         <h2>
                             <div align="center"><a href='{{ p.get_absolute_url }}'>
-                                {{  p.title }}</a>
-                                
+                                {{  p.title }}</a>                        
+                            
                                 {% if p.category %}     
                                     <span class="badge bg-secondary float-end">{{ p.category }}</span>   
                                 {% else %}
@@ -25,6 +25,13 @@
                                 
                             </div>
                         </h2>
+
+                            <div align="right" class="card-footer">
+                                by <a href="#">{{p.author}}</a>
+                            </div>
+                            <div align="right" class="card-footer">
+                                Post on {{p.created_at}}</a>
+                            </div>
  
                     </div>    
                         
@@ -44,9 +51,7 @@
                         <br/>
                     {% endif %}
                     
-                    <div align="right" class="card-footer">
-                        Post on {{p.created_at}} by <a href="#">{{p.author}}</a>
-                    </div>
+                    
                     <br/>
                     <br/>
 
