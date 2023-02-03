@@ -50,11 +50,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'today_api',
+    
     'rest_framework',
     'import_export',
     'korean_lunar_calendar',
+    'crispy_forms',
+
+    'today_api',    
     'my_today',
     'accounts',
     'yughyo',
@@ -152,3 +154,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/accounts/login/'
 AUTH_USER_MODEL = 'accounts.MyUser'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
