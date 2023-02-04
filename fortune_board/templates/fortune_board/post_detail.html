@@ -5,22 +5,22 @@
 <div id ="post-area">
     <div class="col-md-8 mx-auto text-left">
         
-        <h3>{{  post.title }}</h3>
+        <h2 align="center">{{  post.title }}</h2>
 
         {% if post.category %}
-            <span class="badge bg-secondary float-end">분류: {{post.category}}</span>
+            <span class="badge badge-link float-end">category: {{post.category}}</span>
         {% else %}
-            <span class="badge bg-secondary float-end">분류: 미분류</span>
+            <span class="badge badge-link float-end">category: 미분류</span>
         {% endif %}
 
         <hr/>     
-        <div>
+        <div align="right">
             {% if user.is_authenticated and user == post.author %}
                 <a class="btn btn-info btn-sm float-end" href="/fortune_board/update_post/{{post.pk}}/" role="button"><i class="fas fa-pen"></i>포스트 수정하기</a>
             {% endif %}
         </div>
         <h5>
-            <div align="left"> {{post.created_at}}   -글쓴이: {{post.author}}</div>
+            <div align="left">   -글쓴이: {{post.author}}( {{post.created_at|date:"Y-m-d"}})</div>
         </h5>   
         <br>
         <div class="card mb-4">
@@ -29,12 +29,12 @@
             {% endif %}
 
         </div>
-        <p> {{  post.content }} </p>    
+        <p> {{  post.get_content_markdown | safe }} </p>    
 
         {% if post.tag %}
             <i class="fas fa-tag"></i>
             {% for t in post.tag.iterator %}
-                <a href="{{ t.get_absolute_url }}"><span class="badge bg-secondary">{{ t }}</span></a>
+                <a href="{{ t.get_absolute_url }}"><span class="badge badge-link">tag: {{ t }}</span></a>
             {% endfor %}
             <br/>
             <br/>

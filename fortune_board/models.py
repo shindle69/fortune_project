@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 # from django.contrib.auth.models import User
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 
 # Create your models here.
 
@@ -33,7 +35,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=200)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL, null=True)
-    content = models.TextField()
+    content = MarkdownxField()
     publish_confirm = models.BooleanField(default=False)
     
     post_image = models.ImageField(upload_to='fortune_board/images/%Y/%m/%d/', blank=True, null=True)    
@@ -50,3 +52,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         return f'/fortune_board/{self.pk}/'
 
+    def get_content_markdown(self):
+        return markdown(self.content)
+        

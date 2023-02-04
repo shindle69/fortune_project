@@ -2,21 +2,27 @@
 {% load static %}
 {% block content %}
 
-<div class="col-md-8 mx-auto text-center">
+<div class="d-flex flex-row justify-content-center">
     <div>
+        <h1>
+            궁물쌤의 운세 게시판 &nbsp&nbsp&nbsp&nbsp{% if category %}<span class="badge badge-secondary">{{category}}</span>{% endif %}
+        </h1>   
+    </div>    
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <div>        
         {% if user.is_authenticated %}
             {% if user.is_superuser or user.is_staff %}
-                <a class="btn btn-info btn-sm float-end" href="/fortune_board/create_post/" role="button">
-                    <i class="fas fa-pen"></i>&nbsp;&nbsp;새로운 글 작성
+            
+                <a class="btn btn-warning" href="/fortune_board/create_post/" role="button">
+                    <i class="fas fa-pen"></i>
+                    &nbsp 새로운 글 작성
                 </a>
             {% endif %}
         {% endif %}
-    </div>  
-    <h1>궁물쌤의 운세 게시판{% if category %}<span class="badge bg-secondary float-end">{{category}}</span>{% endif %}</h1>   
-   
+    </div>    
 </div>
 <hr/>
-<div class="col-md-12 mx-auto text-center">    
+<div class="col-md-12 mx-auto">    
     <div class="row">            
         <div id="main_area" class="col-md-8 mx-auto">  
             {% if post_list.exists %}
@@ -25,11 +31,11 @@
                         <h2>
                             <div align="center"><a href='{{ p.get_absolute_url }}'>
                                 {{  p.title }}</a>                        
-                            
+                                &nbsp&nbsp&nbsp&nbsp
                                 {% if p.category %}     
-                                    <span class="badge bg-secondary float-end">{{ p.category }}</span>   
+                                    <span class="badge badge-primary">{{ p.category }}</span>   
                                 {% else %}
-                                    <span class="badge bg-secondary float-end">미분류</span> 
+                                    <span class="badge badge-primary">미분류</span> 
                                 {% endif %}                                 
                             </div>
                         </h2>
@@ -37,7 +43,7 @@
                                 by <a href="#">{{p.author}}</a>
                             </div>
                             <div align="right" class="card-footer">
-                                Post on {{p.created_at}}</a>
+                                Post on {{p.created_at|date:"Y-m-d"}}</a>
                             </div> 
                     </div>                            
                     <div class="card mb-4">   
@@ -45,12 +51,13 @@
                             <img class="figure-img img-fluid rounded mx-auto" src="{{ p.post_image.url }}"  alt="{{ p }} post image" >   
                         {% endif %}         
                     </div>
-                    <p> {{  p.content | truncatewords:50 }} </p>
+                    <p class ="card-text"> {{  p.get_content_markdown | truncatewords_html:50 | safe }} </p>
 
                     {% if p.tag %}
-                        <i class="fas fa-tag"></i>
+                    <i class="fas fa-tag"></i>
+                        
                         {% for t in p.tag.iterator %}
-                            <a href="{{ t.get_absolute_url }}"><span class="badge bg-secondary">{{ t }}</span></a>
+                            <a href="{{ t.get_absolute_url }}"><span class="badge badge-light">태그 : {{ t }}</span></a>
                         {% endfor %}
                         <br/>
                         <br/>
