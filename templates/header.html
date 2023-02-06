@@ -34,7 +34,7 @@
       <li class="nav-item">
         <div align="">
           {% if not user.is_authenticated %}
-            <button type="button" class="btn btn-link"><a href="{% url 'accounts:login' %}">로그인</a></button>
+            <button type="button" class="btn btn-link"><a href="{% url 'accounts:login' %}">로그인</a></button>            
           {% else %}
             <button type="button" class="btn btn-link"><a href="{% url 'accounts:logout' %}">로그아웃</a></button>
         </div>

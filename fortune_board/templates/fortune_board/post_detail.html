@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <div id ="post-area">
@@ -45,8 +47,37 @@
 </div>
 <div id ="comment-area">
     <div class="col-md-8 mx-auto text-left">
-        <p>comment area</p>
+        <p>댓글 달기</p>
+        {% if user.is_authenticated %}
+        
+        <form class="mb-4" id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
+            {% csrf_token %}
+            <div class="form-group">
+               {{ comment_form | crispy }}
+            </div>
+            <button type="submit" class="btn btn-primary">Summit</button>
+        </form>
+        {% else %}
+            <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">
+                Log in and Leave a comment
+            </a>
+        {% endif %}
     </div>
+    
+    {% if post.comment_set.exists %}
+        {% for comment in post.comment_set.iterator %}
+            <div class="col-md-8 mx-auto text-left" id="comment-{{ comment.pk }}">
+                <img class="d-flex mr-r rounded-circle" src="http://placehold.it/50x50" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0">
+                        {{comment.author.username}} &nbsp;&nbsp;<small class="text-muted">{{cpmment.created_at}}</small>
+                    </h5>
+                    <p>{{ comment.content | linebreaks }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 </div>
+<hr/>
 
 {% endblock content %}}>
