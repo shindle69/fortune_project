@@ -36,7 +36,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL, null=True)
     content = MarkdownxField()
-    publish_confirm = models.BooleanField(default=False)
+    publish_confirm = models.BooleanField(default=True)
     
     post_image = models.ImageField(upload_to='fortune_board/images/%Y/%m/%d/', blank=True, null=True)    
 
