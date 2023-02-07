@@ -74,6 +74,8 @@ def category_page(request, slug):
 
 class PostList(ListView):
     model = Post    
+    # ordering = '-pk'
+    paginate_by = 5
 
     def get_queryset(self):
         return Post.objects.filter(publish_confirm=True).order_by('-pk')    
