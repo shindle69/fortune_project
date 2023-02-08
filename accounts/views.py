@@ -19,7 +19,7 @@ def signup(request):
         email = request.POST["email"]
         customer_id = request.POST["customer_id"]
         birth_day = request.POST["birth_day"]
-        birth_time = request.POST["birth_time"]
+        birth_time = request.POST["birth_time"]        
 
         user = MyUser.objects.create_user(username, email, password)
         user.first_name = first_name

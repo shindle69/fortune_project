@@ -7,3 +7,4 @@ class MyUser(AbstractUser):
     customer_id = models.CharField(max_length=10)
     birth_day = models.DateField(null=True, blank=True)
     birth_time = models.TimeField(null=True, blank=True)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')

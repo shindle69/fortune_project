@@ -55,7 +55,10 @@
             <div class="form-group">
                {{ comment_form | crispy }}
             </div>
-            <button type="submit" class="btn btn-primary">Summit</button>
+            <div align="right">
+                <button type="submit" class="btn btn-primary">Summit</button>
+            </div>
+            
         </form>
         {% else %}
             <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">
@@ -67,7 +70,7 @@
     {% if post.comment_set.exists %}
         {% for comment in post.comment_set.iterator %}
             <div class="col-md-8 mx-auto text-left" id="comment-{{ comment.pk }}">
-                <img class="d-flex mr-r rounded-circle" src="http://placehold.it/50x50" alt="">
+                <img class="d-flex mr-r rounded-circle" src="{{ comment.get_avatar_url }}" alt="{{ comment.author }}" width="60px">
 
                 {% if user.is_authenticated and comment.author == user %}
 
