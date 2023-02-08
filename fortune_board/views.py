@@ -189,6 +189,7 @@ class CommentUpdate(LoginRequiredMixin, UpdateView):
         else:
             raise PermissionDenied
 
+
 class PostSearch(PostList):
     paginate_by = None
 
@@ -196,7 +197,7 @@ class PostSearch(PostList):
         q = self.kwargs['q']
         
         post_list = Post.objects.filter(
-            Q(title__contains=q) | Q(tags__name__contains=q)
+            Q(title__contains=q) | Q(tag__name__contains=q)
         ).distinct()
         return post_list
 

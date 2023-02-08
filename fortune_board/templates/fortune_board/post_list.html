@@ -5,7 +5,9 @@
 <div class="d-flex flex-row justify-content-center">
     <div>
         <h1>
-            궁물쌤의 운세 게시판 &nbsp&nbsp&nbsp&nbsp{% if category %}<span class="badge badge-secondary">{{category}}</span>{% endif %}
+            궁물쌤의 운세 게시판 &nbsp&nbsp&nbsp&nbsp
+            {% if search_info %}<small class="text-muted">{{ search_info }}</small>{% endif %}
+            {% if category %}<span class="badge badge-secondary">{{category}}</span>{% endif %}
         </h1>   
     </div>    
     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -67,7 +69,10 @@
 
                 {% endfor %}
             {% else %}
-                        <h3>아직 게시물이 없습니다.</h3>
+                    <div>
+                        <h3 align="center">아직 게시물이 없습니다.</h3>
+                    </div>
+                        
             {% endif %}
             <br>
         </div>
@@ -88,8 +93,8 @@
             </div>
 
             <!--Search Widget-->
-            <div class="card my-4">
-                <h5 class="card-header">Search</h5>
+            <div class="Card my-4" id="category-search">
+                <h5 class="card-header">Search(제목,태그)</h5>
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for..." id="search-input">
@@ -103,6 +108,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    function searchPost() {
+        let searchValue = document.getElementById('search-input').value.trim();
+        if (searchValue.length > 1) {
+            location.href = "/fortune_board/search/" + searchValue + "/";
+        } else {
+            alert('검색어(' + searchValue + ')가 너무 짧습니다.');
+        }
+    };
+
+    document.getElementById('search-input').addEventListener('keyup',function(event)
+    {
+        if(event.key == 'Enter'){
+            searchPost();
+        }
+    });
+</script>
+
 
 {% if is_paginated %}
     <!--Pagination-->
@@ -130,23 +154,6 @@
     </ul>    
 {% endif %}
 
-<script>
-    function searchPost() {
-        let searchValue = document.getElementById('search-input').value.trim();
-        if (searchValue.length > 1) {
-            location.href = "/fortune_board/search/" + searchValue + "/";
-        } else {
-            alert('검색어(' + searchValue + ')가 너무 짧습니다.');
-        }
-    };
-
-    document.getElementById('search-input').addEventListener('keyup',function(event)
-    {
-        if(event.key == 'Enter'){
-            searchPost();
-        }
-    });
-</script>
 
 {% endblock content %}>
 
