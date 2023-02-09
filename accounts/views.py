@@ -21,7 +21,7 @@ def signup(request):
         birth_day = request.POST["birth_day"]
         birth_time = request.POST["birth_time"]        
 
-        user = MyUser.objects.create_user(username, email, password)
+        user = MyUser.objects.create_user(username, password)
         user.first_name = first_name
         user.last_name = last_name
         user.customer_id = customer_id
@@ -32,10 +32,41 @@ def signup(request):
 
     return render(request, "accounts/signup.html")
 
+
+# @login_required
+# def profile_update(request, pk):
+#     if request.method =="POST":
+#         print(request.POST)
+        
+#         username = request.username
+#         password = request.POST["password"]
+#         first_name = request.POST["first_name"]
+#         last_name = request.POST["last_name"]
+#         email = request.POST["email"]
+#         customer_id = request.POST["customer_id"]
+#         birth_day = request.POST["birth_day"]
+#         birth_time = request.POST["birth_time"]  
+              
+
+#         user = MyUser.objects.create_user(username, password)
+#         user.email = email
+#         user.first_name = first_name
+#         user.last_name = last_name
+#         user.customer_id = customer_id
+#         user.birth_day = birth_day
+#         user.birth_time = birth_time
+#         user.save()
+#         return redirect("accounts:profile_update")
+
+#     return render(request, "accounts/profile_form.html")
+
+
+
+
 @login_required
 def profile(request, pk):
     if request.method == 'POST':
-        pass
+        pass        
     user = get_user_model().objects.get(pk=pk)
 
     year = user.birth_day.strftime("%Y")
@@ -47,6 +78,8 @@ def profile(request, pk):
     lunar = calendar.LunarIsoFormat()
     gabja = calendar.getGapJaString()
     hanja = calendar.getChineseGapJaString()
+
+    # image = user.image.url
 
     context = {
         "lunar": lunar,

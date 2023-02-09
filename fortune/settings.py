@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'accounts',
     'yughyo',
     'fortune_board',
+    'single_pages',
 ]
 
 MIDDLEWARE = [

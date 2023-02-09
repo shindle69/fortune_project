@@ -15,8 +15,9 @@ urlpatterns = [
     path('yughyo/', include('yughyo.urls', namespace="yughyo")),
     path('about/', include('about.urls', namespace="about")),
     path('fortune_board/', include('fortune_board.urls', namespace="fortune_board")),
+    path('landing/', include('single_pages.urls')),
 
-    path('', views.today_catch)
+    path('', views.today_catch),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
