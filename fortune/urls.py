@@ -15,7 +15,7 @@ urlpatterns = [
     path('yughyo/', include('yughyo.urls', namespace="yughyo")),
     path('about/', include('about.urls', namespace="about")),
     path('fortune_board/', include('fortune_board.urls', namespace="fortune_board")),
-    path('landing/', include('single_pages.urls')),
+    path('landing/', include('single_pages.urls', namespace="single_pages")),
 
     path('', views.today_catch),
 ] 

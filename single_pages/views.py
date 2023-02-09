@@ -12,3 +12,7 @@ def landing(request):
             'recent_posts': recent_posts,
         }
     )
+
+def flower(request):
+    
+    return render(request, 'single_pages/flower.html',)
