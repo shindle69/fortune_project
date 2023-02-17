@@ -15,16 +15,20 @@ from accounts.forms import RegistrationForm, AccountAuthForm
 def signup(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
-        return HttpResponse("You are already authenticated as " + str(user.email))
+        return HttpResponse("You are already authenticated as " + str(user.username))
  
     context = {}
     if request.POST:
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            email = form.cleaned_data.get('email').lower()
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email, password=raw_password)
+            username = form.cleaned_data.get('username').lower()
+            # email = form.cleaned_data.get('email').lower()
+            if form.cleaned_data.get('password1') == form.cleaned_data.get('password2'):
+                raw_password = form.cleaned_data.get('password1')
+            else:
+                return redirect('accounts:signup')
+            account = authenticate(username=username, password=raw_password)
             login(request, account)
             # destination = kwargs.get("next")
             destination = get_redirect_if_exists(request)
@@ -56,9 +60,9 @@ def login_view(request, *args, **kwargs):
     if request.POST:
         form = AccountAuthForm(request.POST)
         if form.is_valid():
-            email = request.POST.get('email')
+            username = request.POST.get('user')
             password = request.POST.get('password')
-            user = authenticate(email=email, password=password)
+            user = authenticate(user=username, password=password)
             if user:
                 login(request, user)
                 if destination:

@@ -57,8 +57,8 @@ class MyUser(AbstractBaseUser):
 
     object = MyAccountManager()  # 헬퍼 클래스 사용
  
-    USERNAME_FIELD = 'email'  # 로그인 ID로 사용할 필드
-    REQUIRED_FIELDS = ['username', 'name'] # 필수 작성 필드
+    USERNAME_FIELD = 'username'  # 로그인 ID로 사용할 필드
+    REQUIRED_FIELDS = ['password'] # 필수 작성 필드
  
     def __str__(self):
         return self.username

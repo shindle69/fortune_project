@@ -6,6 +6,7 @@ from accounts.models import MyUser
  
 # 회원 가입 폼
 class RegistrationForm(UserCreationForm):
+    
     email = forms.EmailField(max_length=254, help_text='Required. Add a valid email address.')
  
     class Meta:
@@ -32,16 +33,17 @@ class RegistrationForm(UserCreationForm):
  
 # 로그인 인증 폼
 class AccountAuthForm(forms.ModelForm):
+    username = forms.CharField(label='Username', widget=forms.TextInput)
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
  
     class Meta:
         model = MyUser
-        fields = ('email', 'password')
+        fields = ('username', 'password')
  
     def clean(self):
         if self.is_valid():
-            email = self.cleaned_data['email']
+            username = self.cleaned_data['username']
             password = self.cleaned_data['password']
-            if not authenticate(email=email, password=password):
+            if not authenticate(username=username, password=password):
                 raise forms.ValidationError("Invalid login")
  
