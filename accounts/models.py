@@ -5,16 +5,19 @@ from django.contrib.auth.models import AbstractUser, AbstractBaseUser, BaseUserM
 class MyAccountManager(BaseUserManager):
     # 일반 user 생성, username 이 userID를 의미함
     def create_user(self, email, username, name, password=None):
-        if not email:
-            raise ValueError("Users must have an email address.")
+        # if not email:
+        #     raise ValueError("Users must have an email address.")
+        
+        # if not name:
+        #     raise ValueError("Users must have an name.")
+
         if not username:
             raise ValueError("Users must have an userID.")
-        if not name:
-            raise ValueError("Users must have an name.")
+
         user = self.model(
-            email = self.normalize_email(email),
+            # email = self.normalize_email(email),           
+            # name = name,
             username = username,
-            name = name
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -23,9 +26,9 @@ class MyAccountManager(BaseUserManager):
     # 관리자 User 생성
     def create_superuser(self, email, username, name, password):
         user = self.create_user(
-            email = self.normalize_email(email),
+            # email = self.normalize_email(email),
             username = username,
-            name = name,
+            # name = name,
             password=password
         )
         user.is_admin = True
@@ -58,7 +61,7 @@ class MyUser(AbstractBaseUser):
     object = MyAccountManager()  # 헬퍼 클래스 사용
  
     USERNAME_FIELD = 'username'  # 로그인 ID로 사용할 필드
-    REQUIRED_FIELDS = ['password'] # 필수 작성 필드
+    # REQUIRED_FIELDS = ['password'] # 필수 작성 필드
  
     def __str__(self):
         return self.username

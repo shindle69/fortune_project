@@ -60,9 +60,9 @@ def login_view(request, *args, **kwargs):
     if request.POST:
         form = AccountAuthForm(request.POST)
         if form.is_valid():
-            username = request.POST.get('user')
+            username = request.POST.get('username')
             password = request.POST.get('password')
-            user = authenticate(user=username, password=password)
+            user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
                 if destination:
