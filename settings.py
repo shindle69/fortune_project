@@ -36,20 +36,10 @@ def get_secret(setting, secrets = secrets):
 SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 1
+DEBUG = True
 
-ALLOWED_HOSTS = [ "*" ]
+ALLOWED_HOSTS = []
 
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # development only
-
-AUTH_USER_MODEL = 'accounts.MyUser'
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.AllowAllUsersModelBackend',
-    'accounts.backends.CaseInsensitiveModelBackend',
-    'django.contrib.auth.backends.AllowAllUsersModelBackend',
-    )
- 
 
 # Application definition
 
